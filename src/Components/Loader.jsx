@@ -9,12 +9,10 @@ function useLoader(url) {
         const data = await fetch(url);
         const jsonData = await data.json();
         if (jsonData) {
-          setShowLoader(() => {
-            console.log("fetched1");
-            // console.log(jsonData);
-            return false;
-          });
+          setShowLoader(false);
+          console.log(jsonData);
         }
+        console.log("hello");
       } catch (e) {
         console.log(e);
       }
