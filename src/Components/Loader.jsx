@@ -3,14 +3,16 @@ import { useState, useEffect } from "react";
 
 function useLoader(url) {
   const [showLoader, setShowLoader] = useState(true);
+  const [jsonData, setData] = useState([]);
   useEffect(() => {
     async function fetchData() {
       try {
         const data = await fetch(url);
-        const jsonData = await data.json();
-        if (jsonData) {
+        const jsondata = await data.json();
+        if (jsondata) {
           setShowLoader(false);
-          console.log(jsonData);
+          setData(jsondata);
+          console.log(jsondata);
         }
         console.log("hello");
       } catch (e) {
@@ -22,7 +24,7 @@ function useLoader(url) {
       setShowLoader(true);
     };
   }, [url]);
-  return showLoader;
+  return [showLoader, jsonData];
 }
 
 export default useLoader;
